@@ -10,8 +10,8 @@ private:
 	std::vector<Book> Books;
 
 public:
-	void DisplayAllBooks();
-	void DisplayCheckedOutBooks();
+	void ShowAllBooks();
+	void ShowCheckedOutBooks();
 	int NumberOfBooks();
 	Book GetBookByIndex(int index);
 	void AddBook(Book book);
