@@ -17,10 +17,10 @@ public:
 	Book();
 	Book( std::string booktitle, std::string author_name);
 
-	void CheckInOrOut(bool checkOut);
-	void DisplayBook();
+	void InOrOutCheck(bool checkOut);
+	void ShowBook();
 	bool IsCheckedOut();
-	std::string GetBookFileData();
+	std::string ObtainBookFileData();
 
 	bool operator==(const Book &book) const
 	{
