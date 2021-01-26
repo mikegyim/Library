@@ -36,8 +36,7 @@ void LoadUsers()
 	ifstream inFile("users.txt");
 
 	string lineData[2];
-	// lineData[0] = username
-	// lineData[1] = role int val
+	
 
 	string userLine;
 	while (getline(inFile, userLine))
@@ -77,13 +76,6 @@ void CreateAccount()
 {
 	User newUser;
 
-	/*cout << "First name:" << endl;
-	string firstName;
-	getline(cin, firstName);
-
-	cout << "Last name:" << endl;
-	string lastName;
-	getline(cin, lastName);*/
 
 	cout << "Username:" << endl;
 	getline(cin, newUser.userName);
@@ -188,7 +180,7 @@ void AddNewBook()
 
 void ListAllBooks()
 {
-	_inventory.DisplayAllBooks();
+	_inventory.ShowAllBooks();
 }
 
 void CheckInOrOutBook(bool checkOut)
@@ -209,16 +201,16 @@ void CheckInOrOutBook(bool checkOut)
 
 	CheckInOrOutResult result = _inventory.CheckInOrOutBook(booktitle, checkOut);
 
-	if (result == CheckInOrOutResult::BookNotFound)
+	if (result == CheckInOrOutResult::Book_Not_Found)
 	{
 		cout << "Book not found";
 	}
-	else if (result == CheckInOrOutResult::Success)
+	else if (result == CheckInOrOutResult::Successful)
 	{
 		cout << "Book checked " + inOrOut + "!" << endl;
 	}
-	else if (result == CheckInOrOutResult::AlreadyCheckedIn
-		|| result == CheckInOrOutResult::AlreadyCheckedOut)
+	else if (result == CheckInOrOutResult::Already_Checked_In
+		|| result == CheckInOrOutResult::Already_Checked_Out)
 	{
 		cout << "Book already checked " + inOrOut << endl;
 	}
@@ -239,7 +231,7 @@ void RemoveBook()
 
 void DisplayCheckedOutBooks()
 {
-	_inventory.DisplayCheckedOutBooks();
+	_inventory.ShowCheckedOutBooks();
 }
 
 int main()
@@ -293,4 +285,3 @@ int main()
 		}
 	}
 }
-
