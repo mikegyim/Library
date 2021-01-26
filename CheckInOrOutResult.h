@@ -3,9 +3,9 @@ enum class CheckInOrOutResult
 {
 	
 	
-	Success,
-	BookNotFound,
-	AlreadyCheckedOut,
-	AlreadyCheckedIn,
+	Successful,
+	Book_Not_Found,
+	Already_Checked_Out,
+	Already_Checked_In,
 	Failure
 };
