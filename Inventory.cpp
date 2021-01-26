@@ -24,7 +24,7 @@ void Inventory::AddBook(Book book)
 	Inventory::Books.push_back(book);
 
 	std::ofstream oFile("books.txt", std::ios_base::app);
-	oFile << book.GetBookFileData() << std::endl;
+	oFile << book.ObtainBookFileData() << std::endl;
 	oFile.close();
 }
 
@@ -35,10 +35,7 @@ void Inventory::LoadBooks()
 	std::ifstream inFile("books.txt");
 
 	std::string bookData[4];
-	// bookData[0] = Id
-	// bookData[1] = Title
-	// bookData[2] = Author
-	// bookData[3] = checked out
+	
 
 	std::string bookLine;
 	while (std::getline(inFile, bookLine))
@@ -61,7 +58,7 @@ void Inventory::LoadBooks()
 
 		Book loadedBook(bookData[1], bookData[2]);
 		loadedBook.Id = stoi(bookData[0]);
-		loadedBook.CheckInOrOut(stoi(bookData[3]));
+		loadedBook.InOrOutCheck(stoi(bookData[3]));
 
 		Books.push_back(loadedBook);
 	}
@@ -96,49 +93,49 @@ CheckInOrOutResult Inventory::CheckInOrOutBook(std::string booktitle, bool check
 
 	if (foundBookIndex < 0)
 	{
-		return CheckInOrOutResult::BookNotFound;
+		return CheckInOrOutResult::Book_Not_Found;
 	}
 	else if (checkOut == Books[foundBookIndex].IsCheckedOut())
 	{
 		if (checkOut)
 		{
-			return CheckInOrOutResult::AlreadyCheckedOut;
+			return CheckInOrOutResult::Already_Checked_Out;
 		}
 		else
 		{
-			return CheckInOrOutResult::AlreadyCheckedIn;
+			return CheckInOrOutResult::Already_Checked_In;
 		}
 	}
 
-	Books[foundBookIndex].CheckInOrOut(checkOut);
+	Books[foundBookIndex].InOrOutCheck(checkOut);
 
 	std::ofstream oFile("books.txt");
 	for (int i = 0; i < Books.size(); i++)
 	{
-		oFile << Books[i].GetBookFileData() << std::endl;
+		oFile << Books[i].ObtainBookFileData() << std::endl;
 	}
 
-	return CheckInOrOutResult::Success;
+	return CheckInOrOutResult::Successful;
 }
 
-void Inventory::DisplayAllBooks()
+void Inventory::ShowAllBooks()
 {
 	std::cout << "\nID\tTitle\tAuthor" << std::endl;
 	for (int i = 0; i < NumberOfBooks(); i++)
 	{
-		Books[i].DisplayBook();
+		Books[i].ShowBook();
 	}
 	std::cout << std::endl;
 }
 
-void Inventory::DisplayCheckedOutBooks()
+void Inventory::ShowCheckedOutBooks()
 {
 	std::cout << "\nID\tBook Title\tAuthor Name " << std::endl;
 	for (int i = 0; i < NumberOfBooks(); i++)
 	{
 		if (GetBookByIndex(i).IsCheckedOut())
 		{
-			Books[i].DisplayBook();
+			Books[i].ShowBook();
 		}
 	}
 	std::cout << std::endl;
