@@ -12,12 +12,12 @@ Book::Book( std::string title, std::string author)
 	Book::CheckedOut = false;
 }
 
-void Book::CheckInOrOut(bool checkOut)
+void Book::InOrOutCheck(bool checkOut)
 {
 	CheckedOut = checkOut;
 }
 
-void Book::DisplayBook()
+void Book::ShowBook()
 {
 	std::cout << Id << "\t" << BookTitle << "\t" << AuthorName  << std::endl;
 }
@@ -27,7 +27,7 @@ bool Book::IsCheckedOut()
 	return CheckedOut;
 }
 
-std::string Book::GetBookFileData()
+std::string Book::ObtainBookFileData()
 {
 	return std::to_string(Id) +   "|" + BookTitle + "|" + AuthorName + "|" + (CheckedOut ? "1" : "0");
 }
