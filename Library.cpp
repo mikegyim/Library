@@ -229,7 +229,7 @@ void RemoveBook()
 	_inventory.RemoveBook(booktitle);
 }
 
-void DisplayCheckedOutBooks()
+void ShowCheckedOutBooks()
 {
 	_inventory.ShowCheckedOutBooks();
 }
